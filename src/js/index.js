@@ -17,6 +17,7 @@ const pillarItem = (state, action) => {
       return state;
   }
 }
+
 const pillarsItems = (state = [], action) => {
   switch(action.type) {
     case 'ADD_PILLAR_ITEM':
@@ -31,7 +32,7 @@ const pillarsItems = (state = [], action) => {
 
 const pillarsApp = combineReducers({
   pillarsItems
-})
+});
 
 const PillarItem = ({
   pillar,
