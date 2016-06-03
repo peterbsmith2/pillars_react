@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react'
 import PillarItem from './PillarItem'
 
 const PillarsTable = ({
-  pillarsItems
+  pillarsItems,
+  //onDeleteClick
 }) => (
   <table>
     <thead>
@@ -20,6 +21,7 @@ const PillarsTable = ({
         <PillarItem
           key={pillarItem.id}
           {...pillarItem}
+          //onDeleteClick
         />
       )}
     </tbody>
@@ -30,7 +32,7 @@ PillarsTable.propTypes = {
   pillarsItems: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     pillar: PropTypes.string.isRequired,
-    start: PropTypes.object.isRequired,
+    start: PropTypes.number.isRequired,
     duration: PropTypes.string.isRequired,
     quality: PropTypes.string.isRequired,
     notes: PropTypes.string.isRequired

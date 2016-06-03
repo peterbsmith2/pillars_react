@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
+import DeleteButton from '../containers/DeleteButton'
 
 const PillarItem = ({
+  id,
   pillar,
   start,
   duration,
@@ -9,7 +11,9 @@ const PillarItem = ({
 }) => (
   <tr>
     <td>
-      Edit
+      <DeleteButton
+        id={id}
+      />
     </td>
     <td>
       {pillar}
@@ -30,11 +34,12 @@ const PillarItem = ({
 )
 
 PillarItem.propTypes = {
+  id: PropTypes.number.isRequired,
   pillar: PropTypes.string.isRequired,
-  start: PropTypes.object.isRequired,
+  start: PropTypes.number.isRequired,
   duration: PropTypes.string.isRequired,
   quality: PropTypes.string.isRequired,
-  notes: PropTypes.string.isRequired
+  notes: PropTypes.string.isRequired,
 }
 
 export default PillarItem

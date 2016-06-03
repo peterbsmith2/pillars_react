@@ -10,3 +10,10 @@ export const addPillarItem = (notes) => {
     notes
   }
 }
+
+export const removePillarItem = (id) => {
+  return {
+    type: 'REMOVE_PILLAR_ITEM',
+    id
+  }
+}

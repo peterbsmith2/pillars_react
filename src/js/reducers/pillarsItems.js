@@ -21,6 +21,10 @@ const pillarsItems = (state = [], action) => {
         ...state,
         pillarItem(undefined, action)
       ];
+    case 'REMOVE_PILLAR_ITEM':
+      return state.filter(todo =>
+        todo.id !== action.id
+      )
     default:
       return state;
   }
