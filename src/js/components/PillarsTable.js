@@ -3,7 +3,6 @@ import PillarItem from './PillarItem'
 
 const PillarsTable = ({
   pillarsItems,
-  //onDeleteClick
 }) => (
   <table>
     <thead>
@@ -21,7 +20,6 @@ const PillarsTable = ({
         <PillarItem
           key={pillarItem.id}
           {...pillarItem}
-          //onDeleteClick
         />
       )}
     </tbody>

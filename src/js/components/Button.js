@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 
 const Button = ({
-  id,
   onClick
 }) => (
   <a href="#"
@@ -10,12 +9,11 @@ const Button = ({
       onClick()
     }}
   >
-    {id}
+    delete
   </a>
 )
 
 Button.propTypes = {
-//  id: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired
 }
 
