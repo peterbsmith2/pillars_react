@@ -5,7 +5,9 @@ import { createStore } from 'redux'
 import pillarsApp from './reducers'
 import App from './components/App'
 
-let store = createStore(pillarsApp);
+let store = createStore(pillarsApp, {},
+  window.devToolsExtension && window.devToolsExtension()
+);
 
 render(
   <Provider store={store}>
