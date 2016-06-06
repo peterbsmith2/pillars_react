@@ -1,7 +1,8 @@
+import * as types from '../constants/ActionTypes'
 let nextPillarItemId = 0;
 export const addPillarItem = (submission) => {
   return {
-    type: 'ADD_PILLAR_ITEM',
+    type: types.ADD_PILLAR_ITEM
     id: nextPillarItemId++,
     pillar: submission.pillar,
     start: Date.now(),
@@ -13,7 +14,7 @@ export const addPillarItem = (submission) => {
 
 export const removePillarItem = (id) => {
   return {
-    type: 'REMOVE_PILLAR_ITEM',
+    type: types.REMOVE_PILLAR_ITEM
     id
   }
 }
