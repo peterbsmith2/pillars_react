@@ -1,12 +1,17 @@
 import React from 'react'
-import AddPillarItem from '../containers/AddPillarItem'
-import VisiblePillarsTable from '../containers/VisiblePillarsTable'
+import PillarsTable from '../components/PillarsTable'
+import Header from '../components/Header'
+import Controls from '../components/Controls'
 
-const App = () => (
-  <div>
-    <AddPillarItem />
-    <VisiblePillarsTable />
-  </div>
-)
+class App extends React.Component {
+  render() {
+    return (
+      <div className="container">
+        <Header />
+        {this.props.children}
+      </div>
+    )
+  }
+}
 
 export default App
