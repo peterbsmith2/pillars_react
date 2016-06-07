@@ -18,21 +18,21 @@ export const fetchEntries = (day) =>
     fetchEntries(day, response)
   )
 
-export const addPillarItem = (submission) => {
-  return {
-    type: types.ADD_PILLAR_ITEM,
-    id: nextPillarItemId++,
-    pillar: submission.pillar,
-    start: Date.now(),
-    duration: submission.duration,
-    quality: submission.quality,
-    notes: submission.notes
-  }
-}
+export const addEntry = (submission) => (dispatch) =>
+  api.addEntry(submission).then(response => {
+    dispatch({
+      type: types.ADD_PILLAR_ITEM_SUCCESS,
+      response
+    })
+  })
 
-export const removePillarItem = (id) => {
-  return {
-    type: types.REMOVE_PILLAR_ITEM,
-    id
-  }
-}
+
+export const removeEntry = (id) => (dispatch) =>
+  api.removeEntry(submission).then(response => {
+    // NOTE: May need to modify the dispatch, depending on what the response
+    // is defined as
+    dispatch({
+      type: types.REMOVE_PILLAR_ITEM_SUCCESS,
+      response
+    })
+  })

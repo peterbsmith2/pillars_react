@@ -16,6 +16,7 @@
   "author": "Peter B Smith",
   "license": "MIT",
   "dependencies": {
+    "node-uuid": "^1.4.7",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
