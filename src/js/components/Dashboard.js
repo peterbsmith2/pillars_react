@@ -1,11 +1,11 @@
 import React from 'react'
-import Controls from './Controls'
+import DatePicker from '../containers/DatePicker'
 import PillarsTable from './PillarsTable'
 
 const Dashboard = () => {
   return (
     <div>
-      <Controls />
+      <DatePicker />
       <PillarsTable />
     </div>
   )

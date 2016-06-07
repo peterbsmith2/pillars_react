@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Controls = () => {
+// needs the dispatch to send out the ''
+const Controls = ({ dispatch }) => {
   return (
     <div className="row">
       <div className="col-md-8 col-md-offset-2">
