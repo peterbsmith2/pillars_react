@@ -14,7 +14,7 @@ const receiveEntries = (day, response) => ({
 })
 
 export const fetchEntries = (day) =>
-  api.fetchEntries(day).then(response
+  api.fetchEntries(day).then(response =>
     fetchEntries(day, response)
   )
 
