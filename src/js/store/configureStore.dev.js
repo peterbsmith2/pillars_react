@@ -1,14 +1,21 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools'
+import thunk from 'redux-thunk'
+import createLogger from 'redux-logger'
 
 function configureStore() {
-  const store= createStore(
-    rootReducer,
-    DevTools.instrument()
-  )
+  const logger = createLogger()
 
-  return store
+  const middleware = [thunk, logger]
+
+  return createStore(
+    rootReducer,
+    compose(
+      applyMiddleware(...middleware),
+      DevTools.instrument()
+    )
+  )
 }
 
 export default configureStore
