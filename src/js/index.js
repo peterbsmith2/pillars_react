@@ -3,11 +3,11 @@ import { render } from 'react-dom'
 import { Router, Route, hashHistory } from 'react-router'
 import routes from './routes'
 import configureStore from './store/configureStore'
+import Root from './containers/Root'
 
 const store = configureStore()
 
 render((
-  <Router history={hashHistory} routes={routes}>
-  </Router>
+  <Root history={hashHistory} store={store} />
 ), document.getElementById('root'))
 

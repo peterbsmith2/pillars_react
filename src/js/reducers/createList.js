@@ -57,5 +57,5 @@ const createList = (day) => {
 export default createList
 
 export const getIds = (state) => state.ids
-export const getIsFecthing = (state) => state.isFetching
+export const getIsFetching = (state) => state.isFetching
 export const getErrorMessage = (state) => state.errorMessage

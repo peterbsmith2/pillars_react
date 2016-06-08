@@ -1,5 +1,6 @@
 import * as types from '../constants/ActionTypes'
 import * as api from '../api'
+import { getIsFetching } from '../reducers'
 
 export const fetchEntries = (day) => (dispatch, getState) => {
   if(getIsFetching(getState(), day)) {

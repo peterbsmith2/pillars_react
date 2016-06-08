@@ -1,13 +1,28 @@
 import { combineReducers } from 'redux'
 import byId, * as fromById from './byId'
 import createList, * as fromList from './createList'
+import moment from 'moment'
 
-export default pillarsItems
+const listOfDays =  {}
 
+const createRootReducer = (day) => {
+  listOfDays[day] = createList(day)
+
+  const listByDay = combineReducers({
+    ...listOfDays
+  })
+
+  return combineReducers({
+    byId,
+    listByDay
+  })
+}
+
+export default createRootReducer
 export const getDaysEntries = (state, day) => {
   const ids = fromList.getIds(state.listByDay[day])
   // TODO: the language below could be a little clearer
-  return ids.map(id => fromById.getIds(state.byId, id))
+  return ids.map(id => fromById.getEntries(state.byId, id))
 }
 
 export const getIsFetching = (state, day) =>
