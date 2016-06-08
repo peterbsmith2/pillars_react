@@ -1,22 +1,32 @@
 import * as types from '../constants/ActionTypes'
 import * as api from '../api'
-let nextPillarItemId = 0;
 
-export const requestEntries = (day) => ({
-  type: 'REQUEST_ITEMS',
-  day
-})
+export const fetchEntries = (day) => (dispatch, getState) => {
+  if(getIsFetching(getState(), day)) {
+    return Promise.resolve()
+  }
 
-const receiveEntries = (day, response) => ({
-  type: 'RECEIVE_TODOS',
-  filter,
-  response
-})
+  dispatch({
+    type: types.FETCH_ENTRIES_REQUEST,
+    day
+  })
 
-export const fetchEntries = (day) =>
-  api.fetchEntries(day).then(response =>
-    fetchEntries(day, response)
-  )
+  return api.fetchEntries(day).then(
+    response => {
+      dispatch({
+        type: types.FETCH_ENTRIES_SUCCESS,
+        day,
+        response
+      })
+    },
+    error => {
+      dispatch({
+        type: types.FETCH_ENTRIES_FAILURE,
+        day,
+        message: error.message || 'Something failed to work properly.'
+      })
+    })
+}
 
 export const addEntry = (submission) => (dispatch) =>
   api.addEntry(submission).then(response => {
