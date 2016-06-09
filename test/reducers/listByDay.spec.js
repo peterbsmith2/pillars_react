@@ -54,4 +54,68 @@ describe('listByDay reducer', () => {
       })
     ).toEqual(endState)
   })
+
+  it('should handle FETCH_ENTRIES_SUCCESS action', () => {
+    const response = [
+      {
+        id: 123,
+        start: "2016-06-06"
+      },
+      {
+        id: 456,
+        start: "2016-06-06"
+      }
+    ]
+
+    const action = {
+      type: types.FETCH_ENTRIES_SUCCESS,
+      response
+    }
+
+    const startState = {
+      "2016-06-06": {
+        ids: [],
+        isFetching: true,
+        errorMessage: false
+      }
+    }
+
+    const endState = {
+      "2016-06-06": {
+        ids: [123, 456],
+        isFetching: false,
+        errorMessage: false
+      }
+    }
+
+    expect(
+      listByDay(startState, action)
+    ).toEqual(endState)
+  })
+  it('should handle FETCH_ENTRIES_REQUEST action', () => {
+    const action = {
+      type: types.FETCH_ENTRIES_REQUEST,
+      day: "2016-06-06"
+    }
+
+    const startState = {
+      "2016-06-06": {
+        ids: [123],
+        isFetching: false,
+        errorMessage: false
+      }
+    }
+
+    const endState = {
+      "2016-06-06": {
+        ids: [123],
+        isFetching: true,
+        errorMessage: false
+      }
+    }
+
+    expect(
+      listByDay(startState, action)
+    ).toEqual(endState)
+  })
 })
