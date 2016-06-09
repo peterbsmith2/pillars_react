@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, hashHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 import routes from './routes'
 import configureStore from './store/configureStore'
 import Root from './containers/Root'

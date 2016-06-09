@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+
 import * as actions from '../actions'
 import PillarsTable from '../components/PillarsTable'
 import { getDaysEntries, getIsFetching, getErrorMessage } from '../reducers'
@@ -35,10 +36,16 @@ class DaysPillarsTable extends Component {
         <div></div>
       )
     }
-
+    const formattedEntries = entries.map(entry => {
+      console.log(entry)
+      return {
+        ...entry,
+        start: moment(entry.start).format("hh:mm a")
+      }
+    })
     return (
       <PillarsTable
-        entries={entries}
+        entries={formattedEntries}
       />
     )
   }
@@ -46,6 +53,7 @@ class DaysPillarsTable extends Component {
 
 const mapStateToProps = (state, { params }) => {
   const day = params.day || moment().format("YYYY-MM-DD")
+
   return {
     entries: getDaysEntries(state, day),
     errorMessage: getErrorMessage(state, day),
