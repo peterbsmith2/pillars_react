@@ -34,9 +34,9 @@ const PillarItem = ({
 )
 
 PillarItem.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   pillar: PropTypes.string.isRequired,
-  start: PropTypes.number.isRequired,
+  start: PropTypes.string.isRequired,
   duration: PropTypes.string.isRequired,
   quality: PropTypes.string.isRequired,
   notes: PropTypes.string.isRequired,

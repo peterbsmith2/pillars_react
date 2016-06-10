@@ -30,13 +30,20 @@ export const fetchEntries = (day) => (dispatch, getState) => {
     })
 }
 
-export const addEntry = (submission) => (dispatch) =>
-  api.addEntry(submission).then(response => {
+export const addEntry = (submission) => (dispatch) => {
+
+  dispatch({
+    type: types.ADD_ENTRY_REQUEST
+  })
+
+  return api.addEntry(submission).then(response => {
     dispatch({
       type: types.ADD_ENTRY_SUCCESS,
       response
     })
   })
+
+}
 
 
 export const removeEntry = (id) => (dispatch) =>
