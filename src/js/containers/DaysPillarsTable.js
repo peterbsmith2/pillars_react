@@ -37,7 +37,6 @@ class DaysPillarsTable extends Component {
       )
     }
     const formattedEntries = entries.map(entry => {
-      console.log(entry)
       return {
         ...entry,
         start: moment(entry.start).format("hh:mm a")

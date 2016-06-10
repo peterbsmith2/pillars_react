@@ -33,7 +33,7 @@ export const fetchEntries = (day) => (dispatch, getState) => {
 export const addEntry = (submission) => (dispatch) =>
   api.addEntry(submission).then(response => {
     dispatch({
-      type: types.ADD_PILLAR_ITEM_SUCCESS,
+      type: types.ADD_ENTRY_SUCCESS,
       response
     })
   })

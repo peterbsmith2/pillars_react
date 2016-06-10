@@ -1,13 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addPillarItem } from '../actions'
+import { addEntry } from '../actions'
+import { withRouter } from 'react-router'
+import moment from 'moment'
 
-let AddPillarItem = ({ dispatch }) => {
+let AddEntry = ({ params, dispatch }) => {
   let submission = {
     pillar: '',
     duration: '',
     notes: '',
-    quality: ''
+    quality: '',
+    start: ''
   }
 
   return (
@@ -22,9 +25,10 @@ let AddPillarItem = ({ dispatch }) => {
           pillar: submission.pillar.value,
           duration: submission.duration.value,
           notes: submission.notes.value,
-          quality: submission.quality.value
+          quality: submission.quality.value,
+          start: +moment(params.day + " " + submission.start.value, "YYYY-MM-DD HH:mm"),
         }
-        dispatch(addPillarItem(preparedSubmission))
+        dispatch(addEntry(preparedSubmission))
         submission.notes.value = ''
         submission.duration.value = ''
         submission.quality.checked = false
@@ -40,23 +44,45 @@ let AddPillarItem = ({ dispatch }) => {
           <option value="EAT WELL">EAT WELL</option>
           <option value="SLACK">SLACK</option>
         </select>
-        <input ref={node => {
-          submission.duration = node;
-        }} />
-        <input ref={node => {
-          submission.notes = node;
-        }} />
-        <input name="quality" type="radio" value="YAY" ref={node => {
-          submission.quality = node;
-        }}/>
-        <input name="quality" type="radio" value="WRENCH" />
-        <button type="submit">
+        <input
+          ref={node => {
+            submission.duration = node;
+          }}
+        />
+        <input
+          ref={node => {
+            submission.notes = node;
+          }}
+        />
+        <input
+          ref={node => {
+            submission.start = node;
+          }}
+          type="time"
+        />
+        <input
+          name="quality"
+          type="radio"
+          value="YAY"
+          ref={node => {
+            submission.quality = node;
+          }}
+        />
+        <input
+          name="quality"
+          type="radio"
+          value="WRENCH"
+        />
+        <button
+          type="submit"
+        >
           Add Pillar
         </button>
       </form>
     </div>
   )
 }
-AddPillarItem = connect()(AddPillarItem)
 
-export default AddPillarItem
+AddEntry = withRouter(connect()(AddEntry))
+
+export default AddEntry

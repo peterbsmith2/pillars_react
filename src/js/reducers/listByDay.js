@@ -1,5 +1,7 @@
 import * as types from '../constants/ActionTypes'
+import moment from 'moment'
 
+// TODO: Breakout into ids, isFecthing, and getErrors reducers
 const listByDay = (state = {}, action) => {
   switch (action.type) {
     case types.FETCH_ENTRIES_REQUEST:
@@ -43,27 +45,23 @@ const listByDay = (state = {}, action) => {
         }
       }
     case types.FETCH_ENTRIES_FAILURE:
-      //TODO ACTUAL IMPLEMENTATION
+      // TODO: ACTUAL IMPLEMENTATION
+      return state
+    case types.ADD_ENTRY_REQUEST:
+      // INTENTIONALLY USELESS
       return state
     case types.ADD_ENTRY_SUCCESS:
-      switch (state[action.submission.start]) {
-        case undefined:
-          return Object.assign({}, state, {
-              [action.submission.start]: {
-                ids: [action.submission.id],
-                isFetching: false,
-                errorMessage: false
-              }
-          })
-        default:
-          return Object.assign({}, state, {
-            [action.start]: {
-              ids: state[action.start].ids.concat(action.submission.id),
-              isFetching: false,
-              errorMessage: false
-            }
-          })
-      }
+      const day = moment(action.response.start).format("YYYY-MM-DD")
+      return Object.assign({}, state, {
+        [day]: {
+            ids: state[day].ids.concat(action.response.id),
+            isFetching: false,
+            errorMessage: false
+          }
+        })
+    case types.ADD_ENTRY_FAILURE:
+      // TODO: ACTUAL IMPLEMENTATION
+      return state
     default:
       return state
   }
