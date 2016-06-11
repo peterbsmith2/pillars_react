@@ -28,7 +28,7 @@ const isFetching = (state = false, action) => {
     case types.FETCH_ENTRIES_FAILURE:
       return false
     default:
-      state
+      return state
   }
   // switch(action.type) {
   //   case types.FETCH_ENTRIES_REQUEST:
@@ -80,28 +80,39 @@ const errorMessage = (state = null, action) => {
 // })
 
 const listByDay = (state = {} , action) => {
-  // note: initial call...
-  let updatedState = {
-    ...state
+  switch (action.type): {
+    case types.FETCH_ENTRIES_REQUEST:
+    case types.FETCH_ENTRIES_FAILURE:
+    case types.FETCH_ENTRIES_SUCCESS:
+    case types.ADD_ENTRY_SUCCESS:
+    case types.ADD_ENTRY_FAILURE:
+    case types.ADD_ENTRY_REQUEST:
+      // note: initial call...
+      let updatedState = {
+        ...state
+      }
+      if (!action.day) {
+        return state
+      }
+      if (!state[action.day]) {
+        updatedState = {
+          ...state,
+          [action.day]: {}
+        }
+      }
+      return {
+        ...updatedState,
+        // [action.day]: daysList(updatedState[action.day], action)
+        [action.day]: {
+          ids: ids(updatedState[action.day].ids, action),
+          isFetching: isFetching(updatedState[action.day].isFetching, action),
+          errorMessage: errorMessage(updatedState[action.day].errorMessage, action)
+        }
+      }
+    default:
+      return state
   }
-  if (!action.day) {
-    return state
-  }
-  if (!state[action.day]) {
-    updatedState = {
-      ...state,
-      [action.day]: {}
-    }
-  }
-  return {
-    ...updatedState,
-    // [action.day]: daysList(updatedState[action.day], action)
-    [action.day]: {
-      ids: ids(updatedState[action.day].ids, action),
-      isFetching: isFetching(updatedState[action.day].isFetching, action),
-      errorMessage: errorMessage(updatedState[action.day].errorMessage, action)
-    }
-  }
+
 }
 
 export default listByDay
