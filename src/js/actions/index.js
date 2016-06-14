@@ -33,16 +33,17 @@ export const fetchEntries = (day) => (dispatch, getState) => {
 export const addEntry = (submission) => (dispatch) => {
 
   dispatch({
-    type: types.ADD_ENTRY_REQUEST
+    type: types.ADD_ENTRY_REQUEST,
+    day: submission.day
   })
 
   return api.addEntry(submission).then(response => {
     dispatch({
       type: types.ADD_ENTRY_SUCCESS,
-      response
+      response,
+      day: submission.day
     })
   })
-
 }
 
 

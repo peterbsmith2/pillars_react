@@ -27,6 +27,7 @@ let AddEntry = ({ params, dispatch }) => {
           notes: submission.notes.value,
           quality: submission.quality.value,
           start: +moment(params.day + " " + submission.start.value, "YYYY-MM-DD HH:mm"),
+          day: params.day
         }
         dispatch(addEntry(preparedSubmission))
         submission.notes.value = ''
