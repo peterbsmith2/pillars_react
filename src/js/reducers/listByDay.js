@@ -5,11 +5,11 @@ import moment from 'moment'
 const ids = (state = [], action) => {
   switch(action.type) {
     case types.FETCH_ENTRIES_SUCCESS:
-      return action.response.map(entry => entry.id)
+      return action.response.result
     case types.ADD_ENTRY_SUCCESS:
       return [
         ...state,
-        action.response.id
+        action.response.result
       ]
     // TODO: ACTUAL REMOVE IMPLEMENTATION
     // case types.REMOVE_ENTRY_SUCCESS:

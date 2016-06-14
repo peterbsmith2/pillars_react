@@ -43,7 +43,7 @@ export const fetchEntries = (day) =>
   delay(500).then(() => {
     const parsedDay = moment(day, "YYYY-MM-DD")
     let endOfDay = moment(day, "YYYY-MM-DD").add(1, 'd')
-    // TODO: make this return based on the day passed in
+
     return fakeDatabase.entries.filter(entry => {
       const start = moment(entry.start)
       return start.isBetween(parsedDay, endOfDay)

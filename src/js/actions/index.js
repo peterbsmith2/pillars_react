@@ -1,12 +1,15 @@
 import * as types from '../constants/ActionTypes'
 import * as api from '../api'
 import { getIsFetching } from '../reducers'
+import { normalize } from 'normalizr'
+import * as schema from './schema'
 
 export const fetchEntries = (day) => (dispatch, getState) => {
 
   if(getIsFetching(getState(), day)) {
     return Promise.resolve()
   }
+
 
   dispatch({
     type: types.FETCH_ENTRIES_REQUEST,
@@ -15,10 +18,11 @@ export const fetchEntries = (day) => (dispatch, getState) => {
 
   return api.fetchEntries(day).then(
     response => {
+
       dispatch({
         type: types.FETCH_ENTRIES_SUCCESS,
         day,
-        response
+        response: normalize(response, schema.arrayOfEntries)
       })
     },
     error => {
@@ -40,7 +44,7 @@ export const addEntry = (submission) => (dispatch) => {
   return api.addEntry(submission).then(response => {
     dispatch({
       type: types.ADD_ENTRY_SUCCESS,
-      response,
+      response: normalize(response, schema.entry),
       day: submission.day
     })
   })
