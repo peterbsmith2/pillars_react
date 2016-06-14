@@ -67,4 +67,13 @@ export const addEntry = (submission) =>
     return entry
   })
 
+export const removeEntry = (submission) =>
+  delay(500).then(() => {
+    let response = {}
+    fakeDatabase.entries = fakeDatabase.entries.filter(entry => {
+      if (submission.id === entry.id ) { response = entry }
+      return submission.id !== entry.id
+    })
+    return response
+  })
   //TODO: add removeEntry and editEntry functions

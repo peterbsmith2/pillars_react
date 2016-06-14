@@ -1,18 +1,27 @@
 import { connect } from 'react-redux'
-import { removePillarItem } from '../actions'
+import { removeEntry } from '../actions'
 import Button from '../components/Button'
+import { withRouter } from 'react-router'
+import moment from 'moment'
+
+const mapStateToProps = (state, { params }) => {
+  const day = params.day || moment().format("YYYY-MM-DD")
+  return {
+    day
+  }
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClick: () => {
-      dispatch(removePillarItem(ownProps.id))
+      dispatch(removeEntry(ownProps))
     }
   }
 }
 
-const DeleteButton = connect(
-  null,
+const DeleteButton = withRouter(connect(
+  mapStateToProps,
   mapDispatchToProps
-)(Button)
+)(Button))
 
 export default DeleteButton

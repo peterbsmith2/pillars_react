@@ -11,12 +11,8 @@ const ids = (state = [], action) => {
         ...state,
         action.response.result
       ]
-    // TODO: ACTUAL REMOVE IMPLEMENTATION
-    // case types.REMOVE_ENTRY_SUCCESS:
-    //   return[
-    //     ...slate.slice(0, index),
-    //     ...state.slice(index)
-    //   ]
+    case types.REMOVE_ENTRY_SUCCESS:
+      return state.filter(id => id !== action.response.result)
     default:
       return state
   }
@@ -52,6 +48,8 @@ const listByDay = (state = {} , action) => {
     case types.ADD_ENTRY_SUCCESS:
     case types.ADD_ENTRY_FAILURE:
     case types.ADD_ENTRY_REQUEST:
+    case types.REMOVE_ENTRY_REQUEST:
+    case types.REMOVE_ENTRY_SUCCESS:
       if (!action.day) {
         return state
       }

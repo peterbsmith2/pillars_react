@@ -1,12 +1,19 @@
 import * as types from '../constants/ActionTypes'
 const byId = (state= {}, action) => {
-  if (action.response) {
-    return {
-      ...state,
-      ...action.response.entities.entries
-    }
+  switch (action.type) {
+    case types.ADD_ENTRY_SUCCESS:
+    case types.FETCH_ENTRIES_SUCCESS:
+      return {
+        ...state,
+        ...action.response.entities.entries
+      }
+    case types.REMOVE_ENTRY_SUCCESS:
+      let nextState = { ...state }
+      delete nextState[action.response.result]
+      return nextState
+    default:
+      return state
   }
-  return state
 }
 
 export default byId

@@ -51,12 +51,19 @@ export const addEntry = (submission) => (dispatch) => {
 }
 
 
-export const removeEntry = (id) => (dispatch) =>
+export const removeEntry = (submission) => (dispatch) => {
+  console.log(submission)
+  dispatch({
+    type: types.REMOVE_ENTRY_REQUEST,
+    day: submission.params.day
+  })
   api.removeEntry(submission).then(response => {
     // NOTE: May need to modify the dispatch, depending on what the response
     // is defined as
     dispatch({
-      type: types.REMOVE_PILLAR_ITEM_SUCCESS,
-      response
+      type: types.REMOVE_ENTRY_SUCCESS,
+      response: normalize(response, schema.entry),
+      day: submission.params.day
     })
   })
+}
