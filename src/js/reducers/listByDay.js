@@ -37,6 +37,8 @@ const errorMessage = (state = null, action) => {
       return null
     case types.FETCH_ENTRIES_FAILURE:
       return action.message
+    default:
+      return state
   }
 }
 

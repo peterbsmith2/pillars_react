@@ -30,5 +30,4 @@ const PillarsTable = ({
   </div>
 )
 
-
 export default PillarsTable
