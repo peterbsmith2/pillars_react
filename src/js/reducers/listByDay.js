@@ -36,6 +36,8 @@ const errorMessage = (state = null, action) => {
     case types.FETCH_ENTRIES_SUCCESS:
       return null
     case types.FETCH_ENTRIES_FAILURE:
+    case types.REMOVE_ENTRY_FAILURE:
+    case types.ADD_ENTRY_FAILURE:
       return action.message
     default:
       return state
@@ -45,13 +47,14 @@ const errorMessage = (state = null, action) => {
 const listByDay = (state = {} , action) => {
   switch (action.type) {
     case types.FETCH_ENTRIES_REQUEST:
-    case types.FETCH_ENTRIES_FAILURE:
     case types.FETCH_ENTRIES_SUCCESS:
+    case types.FETCH_ENTRIES_FAILURE:
+    case types.ADD_ENTRY_REQUEST:
     case types.ADD_ENTRY_SUCCESS:
     case types.ADD_ENTRY_FAILURE:
-    case types.ADD_ENTRY_REQUEST:
     case types.REMOVE_ENTRY_REQUEST:
     case types.REMOVE_ENTRY_SUCCESS:
+    case types.REMOVE_ENTRY_FAILURE:
       if (!action.day) {
         return state
       }
