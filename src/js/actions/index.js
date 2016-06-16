@@ -18,7 +18,6 @@ export const fetchEntries = (day) => (dispatch, getState) => {
 
   return api.fetchEntries(day).then(
     response => {
-
       dispatch({
         type: types.FETCH_ENTRIES_SUCCESS,
         day,
@@ -41,22 +40,30 @@ export const addEntry = (submission) => (dispatch) => {
     day: submission.day
   })
 
-  return api.addEntry(submission).then(response => {
-    dispatch({
-      type: types.ADD_ENTRY_SUCCESS,
-      response: normalize(response, schema.entry),
-      day: submission.day
+  return api.addEntry(submission).then(
+    response => {
+      dispatch({
+        type: types.ADD_ENTRY_SUCCESS,
+        response: normalize(response, schema.entry),
+        day: submission.day
+      })
+    },
+    error => {
+      dispatch({
+        type: types.ADD_ENTRY_FAILURE,
+        message: error.message || 'Something failed to work properly.'
+      })
     })
-  })
 }
 
 
 export const removeEntry = (submission) => (dispatch) => {
-  console.log(submission)
+
   dispatch({
     type: types.REMOVE_ENTRY_REQUEST,
     day: submission.params.day
   })
+
   api.removeEntry(submission).then(
     response => {
       // NOTE: May need to modify the dispatch, depending on what the response
@@ -69,7 +76,7 @@ export const removeEntry = (submission) => (dispatch) => {
     },
     error => {
       dispatch({
-        type: types.FETCH_ENTRIES_FAILURE,
+        type: types.REMOVE_ENTRY_FAILURE,
         message: error.message || 'Something failed to work properly.'
     })
   })
