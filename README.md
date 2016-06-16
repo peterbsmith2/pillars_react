@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/peterbsmith2/pillars_react.svg?branch=master)](https://travis-ci.org/peterbsmith2/pillars_react)
+
 # pillars_react
 PILLARS with React/Redux
 
