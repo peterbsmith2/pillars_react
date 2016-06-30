@@ -20,7 +20,7 @@ describe('byId reducer', () => {
             id: 'this-is-an-id-with-numb3r',
             pillar: 'ZAZEN',
             duration: '00:45',
-            start: 1465264800000,
+            event_date: "2016-06-06 22:00:00",
             quality: 'YAY',
             notes: 'full lotus',
           }
@@ -65,7 +65,7 @@ describe('byId reducer', () => {
             id: 'this-is-an-id-with-numb3r',
             pillar: 'ZAZEN',
             duration: '00:45',
-            start: 1465264800000,
+            event_date: "2016-06-06 22:00:00",
             quality: 'YAY',
             notes: 'full lotus',
           }

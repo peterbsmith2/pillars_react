@@ -21,7 +21,7 @@ export const fetchEntries = (day) => (dispatch, getState) => {
       dispatch({
         type: types.FETCH_ENTRIES_SUCCESS,
         day,
-        response: normalize(response, schema.arrayOfEntries)
+        response: normalize(response.entries, schema.arrayOfEntries)
       })
     },
     error => {

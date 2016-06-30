@@ -1,8 +1,15 @@
 import * as types from '../constants/ActionTypes'
+import moment from 'moment'
+
 const byId = (state= {}, action) => {
   switch (action.type) {
     case types.ADD_ENTRY_SUCCESS:
     case types.FETCH_ENTRIES_SUCCESS:
+      for (let prop in action.response.entities.entries) {
+        action.response.entities.entries[prop].start =
+          moment(action.response.entities.entries[prop].event_date).valueOf();
+        delete action.response.entities.entries[prop].event_date
+      }
       return {
         ...state,
         ...action.response.entities.entries

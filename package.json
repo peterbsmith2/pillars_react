@@ -17,6 +17,7 @@
   "author": "Peter B Smith",
   "license": "MIT",
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "moment": "^2.13.0",
     "node-uuid": "^1.4.7",
     "normalizr": "^2.1.0",
