@@ -1,6 +1,5 @@
 import * as types from '../constants/ActionTypes'
 import { combineReducers } from 'redux'
-import moment from 'moment'
 
 const ids = (state = [], action) => {
   switch(action.type) {
