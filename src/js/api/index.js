@@ -77,22 +77,28 @@ export const fetchEntries = (day) => {
 
 }
 
-export const addEntry = (submission) =>
-  delay(500).then(() => {
-    const entry = {
-      // can use ES7 object spread here like:
-      // ...submission
-      id: v4(),
-      pillar: submission.pillar,
-      duration: submission.duration,
-      start: submission.start,
-      quality: submission.quality,
-      notes: submission.notes
-      //NOTE: isEditing shouldn't go to the database, it needs a new home
-    }
-    fakeDatabase.entries.push(entry)
-    return entry
+export const addEntry = (submission) => {
+
+  return fetch('http://pillars.peterbsmith.net/api/log/', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(submission)
   })
+  .then(response =>
+    response.json().then(json => ({ json, response }))
+  )
+  .then(({ json, response }) => {
+    if (!response.ok) {
+      return Promise.reject(json)
+    }
+
+    return json
+
+  })
+}
 
 export const removeEntry = (submission) =>
   delay(500).then(() => {

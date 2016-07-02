@@ -23,23 +23,6 @@ describe('async actions', () => {
       }
     }
 
-    const mockFetchState = {
-      "byId": {
-        123: {
-          "id": 123,
-          "pillar": "ZAZEN",
-          "start": 1465264800000
-        },
-      },
-      "listByDay": {
-        "2016-06-06": {
-          "ids": [123],
-          "isFetching": false,
-          "errorMessage": false
-        },
-      }
-    }
-
     const responseFromServer =
     {
       "Error": false,

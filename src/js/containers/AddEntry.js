@@ -6,11 +6,11 @@ import moment from 'moment'
 
 let AddEntry = ({ params, dispatch }) => {
   let submission = {
-    pillar: '',
-    duration: '',
-    notes: '',
-    quality: '',
-    start: ''
+    user_pillar: '',
+    user_duration: '',
+    user_notes: '',
+    user_quality: '',
+    user_date: ''
   }
 
   return (
@@ -18,24 +18,24 @@ let AddEntry = ({ params, dispatch }) => {
       <form onSubmit={e => {
         let preparedSubmission
         e.preventDefault()
-        if (!submission.quality.checked) {
-          submission.quality.value = "WRENCH"
+        if (!submission.user_quality.checked) {
+          submission.user_quality.value = "WRENCH"
         }
         preparedSubmission = {
-          pillar: submission.pillar.value,
-          duration: submission.duration.value,
-          notes: submission.notes.value,
-          quality: submission.quality.value,
-          start: +moment(params.day + " " + submission.start.value, "YYYY-MM-DD HH:mm"),
+          user_pillar: submission.user_pillar.value,
+          user_duration: submission.user_duration.value,
+          user_notes: submission.user_notes.value,
+          user_quality: submission.user_quality.value,
+          user_date: params.day + "T" + submission.user_date.value + ":00",
           day: params.day
         }
         dispatch(addEntry(preparedSubmission))
-        submission.notes.value = ''
-        submission.duration.value = ''
-        submission.quality.checked = false
+        submission.user_notes.value = ''
+        submission.user_duration.value = ''
+        submission.user_quality.checked = false
       }}>
         <select ref={node => {
-          submission.pillar = node
+          submission.user_pillar = node
         }}>
           <option value="ZAZEN">ZAZEN</option>
           <option value="WORK">WORK</option>
@@ -47,17 +47,17 @@ let AddEntry = ({ params, dispatch }) => {
         </select>
         <input
           ref={node => {
-            submission.duration = node;
+            submission.user_duration = node;
           }}
         />
         <input
           ref={node => {
-            submission.notes = node;
+            submission.user_notes = node;
           }}
         />
         <input
           ref={node => {
-            submission.start = node;
+            submission.user_date = node;
           }}
           type="time"
         />
@@ -66,7 +66,7 @@ let AddEntry = ({ params, dispatch }) => {
           type="radio"
           value="YAY"
           ref={node => {
-            submission.quality = node;
+            submission.user_quality = node;
           }}
         />
         <input
