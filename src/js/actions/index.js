@@ -44,7 +44,7 @@ export const addEntry = (submission) => (dispatch) => {
     response => {
       dispatch({
         type: types.ADD_ENTRY_SUCCESS,
-        response: normalize(response, schema.entry),
+        response: normalize(response.entries, schema.entry),
         day: submission.day
       })
     },
