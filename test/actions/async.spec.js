@@ -4,8 +4,9 @@ import * as actions from '../../src/js/actions/'
 import * as types from '../../src/js/constants/ActionTypes'
 import expect from 'expect'
 import nock from 'nock'
+import * as api from '../../src/js/api'
 
-const middlewares = [ thunk ]
+const middlewares = [ thunk.withExtraArgument(api) ]
 const mockStore = configureMockStore(middlewares)
 
 describe('async actions', () => {

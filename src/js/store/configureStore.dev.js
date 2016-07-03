@@ -4,11 +4,12 @@ import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools'
 import createLogger from 'redux-logger'
 import moment from 'moment'
+import * as api from '../api'
 
 function configureStore() {
   const logger = createLogger()
 
-  const middleware = [thunk, logger]
+  const middleware = [thunk.withExtraArgument(api), logger]
 
   const store = createStore(
     rootReducer,

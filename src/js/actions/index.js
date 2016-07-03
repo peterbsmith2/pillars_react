@@ -1,10 +1,9 @@
 import * as types from '../constants/ActionTypes'
-import * as api from '../api'
 import { getIsFetching } from '../reducers'
 import { normalize } from 'normalizr'
 import * as schema from './schema'
 
-export const fetchEntries = (day) => (dispatch, getState) => {
+export const fetchEntries = (day) => (dispatch, getState, api) => {
 
   if(getIsFetching(getState(), day)) {
     return Promise.resolve()
@@ -33,7 +32,7 @@ export const fetchEntries = (day) => (dispatch, getState) => {
     })
 }
 
-export const addEntry = (submission) => (dispatch) => {
+export const addEntry = (submission) => (dispatch, getState, api) => {
 
   dispatch({
     type: types.ADD_ENTRY_REQUEST,
@@ -57,7 +56,7 @@ export const addEntry = (submission) => (dispatch) => {
 }
 
 
-export const removeEntry = (submission) => (dispatch) => {
+export const removeEntry = (submission) => (dispatch, getState, api) => {
 
   dispatch({
     type: types.REMOVE_ENTRY_REQUEST,
