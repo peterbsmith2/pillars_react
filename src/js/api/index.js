@@ -100,13 +100,26 @@ export const addEntry = (submission) => {
   })
 }
 
-export const removeEntry = (submission) =>
-  delay(500).then(() => {
-    let response = {}
-    fakeDatabase.entries = fakeDatabase.entries.filter(entry => {
-      if (submission.id === entry.id ) { response = entry }
-      return submission.id !== entry.id
-    })
-    return response
+export const removeEntry = (submission) => {
+
+  return fetch('http://pillars.peterbsmith.net/api/log/', {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(submission)
   })
-  //TODO: add removeEntry and editEntry functions
+  .then(response => {
+
+    if (!response.ok) {
+      return Promise.reject(false)
+    }
+
+    return true
+
+  })
+
+}
+
+//TODO: add editEntry functions

@@ -57,26 +57,27 @@ export const addEntry = (submission) => (dispatch, getState, api) => {
 
 
 export const removeEntry = (submission) => (dispatch, getState, api) => {
-
   dispatch({
     type: types.REMOVE_ENTRY_REQUEST,
-    day: submission.params.day
+    day: submission.params.day,
+    id: submission.id
   })
 
-  api.removeEntry(submission).then(
+  return api.removeEntry(submission).then(
     response => {
       // NOTE: May need to modify the dispatch, depending on what the response
       // is defined as
       dispatch({
         type: types.REMOVE_ENTRY_SUCCESS,
-        response: normalize(response, schema.entry),
+        response: { result: submission.id },
         day: submission.params.day
       })
     },
     error => {
       dispatch({
         type: types.REMOVE_ENTRY_FAILURE,
-        message: error.message || 'Something failed to work properly.'
+        message: error.message || 'Something failed to work properly.',
+        day: submission.params.day
     })
   })
 }

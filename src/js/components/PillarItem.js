@@ -7,12 +7,14 @@ const PillarItem = ({
   start,
   duration,
   quality,
-  notes
+  notes,
+  day
 }) => (
   <tr>
     <td>
       <DeleteButton
         id={id}
+        day={day}
       />
     </td>
     <td>

@@ -6,6 +6,8 @@ const byId = (state= {}, action) => {
     case types.ADD_ENTRY_SUCCESS:
     case types.FETCH_ENTRIES_SUCCESS:
       for (let prop in action.response.entities.entries) {
+        // TODO: This has to do with the API responding with a datestring and
+        // not an epoch, fix the API
         action.response.entities.entries[prop].start =
           moment(action.response.entities.entries[prop].event_date).valueOf();
         delete action.response.entities.entries[prop].event_date
